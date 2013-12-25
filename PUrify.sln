@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PUrify", "PUrify\PUrify.csproj", "{BF743357-4675-437B-8C6C-3A4513D7E163}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PUrify", "src\PUrify\PUrify.csproj", "{BF743357-4675-437B-8C6C-3A4513D7E163}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
