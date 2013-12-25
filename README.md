@@ -36,5 +36,7 @@ Credits to the following folks:
 
 * [Rasmus Faber] (http://dk.linkedin.com/pub/rasmus-faber-espensen/5/92/880) for the .NET implementation of the workaround posted [here] (http://stackoverflow.com/questions/781205/getting-a-url-with-an-url-encoded-slash)
 
-* [Miguel De Icaza] (https://github.com/migueldeicaza) for his techincal assistance on the Mono Uri implementation, and for offering to help ensure Mono will continue to be support this workaround.
+* [Miguel De Icaza] (https://github.com/migueldeicaza) for his technical assistance on the Mono Uri implementation, and for offering to help ensure Mono will continue to be support this workaround.
+
+* [Matt McClure] (https://github.com/matthewlmcclure) for his review of the mono version and for pointing out how to properly handle fragments.
 
