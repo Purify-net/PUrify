@@ -27,6 +27,18 @@ To use Purify, create a Uri which you want to Purify. Then call the Purify exten
     }
 ```
 
+Running this code will output the following:
+
+```
+uri.ToString() - http://www.yahoo.com/%2F?Foo=Bar%2F#frag
+uri.AbsoluteUri - http://www.yahoo.com/%2F?Foo=Bar%2F#frag
+uri.Host - www.yahoo.com
+uri.Query - ?Foo=Bar%2F
+uri.PathAndQuery - /%2F?Foo=Bar%2F
+uri.AbsolutePath - /%2F
+uri.Fragment - #frag
+```
+
 # Platforms
 
 .NET 3.5, 4.0, and Mono > 1.x
