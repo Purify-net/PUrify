@@ -1,4 +1,5 @@
 PUrify
 ======
 
-PUrify
+PUrify your URIs.
+
