@@ -1,4 +1,4 @@
-PUrify - Purify your Uri
+PUrify - Your Uris have been PUrified!
 ======
 
 # Why do I need my Uris purified?
