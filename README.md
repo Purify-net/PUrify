@@ -10,14 +10,13 @@ The Uri classes in .NET prior to 4.5 and Mono scrub through your Uris and modify
 PUrify will ensure that the Uri remains untouched. How does it do that? Well it hacks into the Uri internals and ensures that the original Uri is preserved.
 
 # Hello Purify
-To use Purify simply instantiate a Purifier instance and call Purify! It will do the rest!
+To use Purify, create a Uri which you want to Purify. Then call the Purify extension method! It will do the rest!
 
 ```csharp
     static void Main(string[] args)
     {
       var uri = new Uri("http://www.myapi.com/%2F?Foo=Bar%2F#frag");
-      var purifier = new Purifier();
-      purifier.Purify(uri);
+      uri.Purify();
       Console.WriteLine ("uri.ToString() - " + uri.ToString ());
       Console.WriteLine ("uri.AbsoluteUri - " + uri.AbsoluteUri);
       Console.WriteLine ("uri.Host - " + uri.Host);
