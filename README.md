@@ -39,6 +39,8 @@ uri.AbsolutePath - /%2F
 uri.Fragment - #frag
 ```
 
+As you can see, the Uri has been PUrified!
+
 # Platforms
 
 .NET 3.5, 4.0, and Mono > 1.x
