@@ -9,8 +9,8 @@ The Uri classes in .NET prior to 4.5 and Mono scrub through your Uris and modify
 
 PUrify will ensure that the Uri remains untouched. How does it do that? Well it hacks into the Uri internals and ensures that the original Uri is preserved.
 
-# Hello Purify
-To use Purify, create a Uri which you want to Purify. Then call the Purify extension method! It will do the rest!
+# Hello PUrify
+To use Purify, create a Uri which you want to Purify. Then call the Purify extension method! It will do the rest! Now take that Uri and use it with your favorite .NET Http client.
 
 ```csharp
     static void Main(string[] args)
@@ -27,14 +27,30 @@ To use Purify, create a Uri which you want to Purify. Then call the Purify exten
     }
 ```
 
+Running this code will output the following:
+
+```
+uri.ToString() - http://www.yahoo.com/%2F?Foo=Bar%2F#frag
+uri.AbsoluteUri - http://www.yahoo.com/%2F?Foo=Bar%2F#frag
+uri.Host - www.yahoo.com
+uri.Query - ?Foo=Bar%2F
+uri.PathAndQuery - /%2F?Foo=Bar%2F
+uri.AbsolutePath - /%2F
+uri.Fragment - #frag
+```
+
+As you can see, the Uri has been PUrified!
+
 # Platforms
 
 .NET 3.5, 4.0, and Mono > 1.x
 
 # Acknowledgements
-Credis to the following folks:
+Credits to the following folks:
 
 * [Rasmus Faber] (http://dk.linkedin.com/pub/rasmus-faber-espensen/5/92/880) for the .NET implementation of the workaround posted [here] (http://stackoverflow.com/questions/781205/getting-a-url-with-an-url-encoded-slash)
 
-* [Miguel De Icaza] (https://github.com/migueldeicaza) for his techincal assistance on the Mono Uri implementation, and for offering to help ensure Mono will continue to be support this workaround.
+* [Miguel De Icaza] (https://github.com/migueldeicaza) for his technical assistance on the Mono Uri implementation, and for offering to help ensure Mono will continue to be support this workaround.
+
+* [Matt McClure] (https://github.com/matthewlmcclure) for his review of the Mono version and for pointing out how to properly handle fragments.
 
