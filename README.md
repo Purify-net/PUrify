@@ -38,5 +38,5 @@ Credits to the following folks:
 
 * [Miguel De Icaza] (https://github.com/migueldeicaza) for his technical assistance on the Mono Uri implementation, and for offering to help ensure Mono will continue to be support this workaround.
 
-* [Matt McClure] (https://github.com/matthewlmcclure) for his review of the mono version and for pointing out how to properly handle fragments.
+* [Matt McClure] (https://github.com/matthewlmcclure) for his review of the Mono version and for pointing out how to properly handle fragments.
 
