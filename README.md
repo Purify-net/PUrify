@@ -31,3 +31,10 @@ To use Purify, create a Uri which you want to Purify. Then call the Purify exten
 
 .NET 3.5, 4.0, and Mono > 1.x
 
+# Acknowledgements
+Credis to the following folks:
+
+* [Rasmus Faber] (http://dk.linkedin.com/pub/rasmus-faber-espensen/5/92/880) for the .NET implementation of the workaround posted [here] (http://stackoverflow.com/questions/781205/getting-a-url-with-an-url-encoded-slash)
+
+* [Miguel De Icaza] (https://github.com/migueldeicaza) for his techincal assistance on the Mono Uri implementation, and for offering to help ensure Mono will continue to be support this workaround.
+
