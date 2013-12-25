@@ -10,7 +10,7 @@ The Uri classes in .NET prior to 4.5 and Mono scrub through your Uris and modify
 PUrify will ensure that the Uri remains untouched. How does it do that? Well it hacks into the Uri internals and ensures that the original Uri is preserved.
 
 # Hello PUrify
-To use Purify, create a Uri which you want to Purify. Then call the Purify extension method! It will do the rest!
+To use Purify, create a Uri which you want to Purify. Then call the Purify extension method! It will do the rest! Now take that Uri and use it with your favorite .NET client.
 
 ```csharp
     static void Main(string[] args)
