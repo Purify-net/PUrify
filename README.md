@@ -15,7 +15,7 @@ To use Purify simply instantiate a Purifier instance and call Purify! It will do
 ```csharp
     static void Main(string[] args)
     {
-      var uri = new Uri("http://www.yahoo.com/%2F?Foo=Bar%2F#frag");
+      var uri = new Uri("http://www.myapi.com/%2F?Foo=Bar%2F#frag");
       var purifier = new Purifier();
       purifier.Purify(uri);
       Console.WriteLine ("uri.ToString() - " + uri.ToString ());
