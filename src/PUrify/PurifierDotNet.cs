@@ -37,6 +37,7 @@ namespace PUrify
         public void Purify(Uri uri)
         {
             string paq = uri.PathAndQuery; // need to access PathAndQuery
+            var abs = uri.AbsoluteUri; //need to access this as well the MoreInfo prop is initialized.
             ulong flags = (ulong)flagsField.GetValue(uri);
             flags &= ~((ulong)0x30); // Flags.PathNotCanonical|Flags.QueryNotCanonical
             flagsField.SetValue(uri, flags);

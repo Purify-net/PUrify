@@ -10,7 +10,7 @@ using Should;
 
 namespace PUrify.Tests
 {
-    public class PurifyTestDotNet
+    public class PurifyTest
     {
         public class ThePurifyMethod
         {
