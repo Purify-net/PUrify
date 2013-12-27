@@ -30,9 +30,9 @@ To use PUrify, create a Uri which you want to Purify. Then call the Purify exten
 Running this code will output the following:
 
 ```
-uri.ToString() - http://www.yahoo.com/%2F?Foo=Bar%2F#frag
-uri.AbsoluteUri - http://www.yahoo.com/%2F?Foo=Bar%2F#frag
-uri.Host - www.yahoo.com
+uri.ToString() - http://www.myapi.com/%2F?Foo=Bar%2F#frag
+uri.AbsoluteUri - http://www.myapi.com/%2F?Foo=Bar%2F#frag
+uri.Host - www.myapi.com
 uri.Query - ?Foo=Bar%2F
 uri.PathAndQuery - /%2F?Foo=Bar%2F
 uri.AbsolutePath - /%2F
