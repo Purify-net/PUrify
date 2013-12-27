@@ -15,7 +15,9 @@ To use PUrify, create a Uri which you want to Purify. Then call the Purify exten
 ```csharp
 static void Main(string[] args)
 {
-  var uri = new Uri("http://www.myapi.com/%2F?Foo=Bar%2F#frag");
+  var uriString = "http://www.myapi.com/%2F?Foo=Bar%2F#frag";
+  var uri = new Uri(uriString);
+  Console.WriteLine("Uri String\n\t" + uriString);
   Console.WriteLine("Before PUrify:");
   ShowUriDetails(uri);           
   uri.Purify();
@@ -39,7 +41,9 @@ public static void ShowUriDetails(Uri uri)
 Running this code will output the following:
 
 ```
-Before PUrify:
+Uri String
+        http://www.myapi.com/%2F?Foo=Bar%2F#frag
+Uri Before PUrify:
         uri.ToString() - http://www.myapi.com//?Foo=Bar/#frag
         uri.AbsoluteUri - http://www.myapi.com//?Foo=Bar%2F#frag
         uri.Host - www.myapi.com
@@ -47,7 +51,7 @@ Before PUrify:
         uri.PathAndQuery - //?Foo=Bar%2F
         uri.AbsolutePath - //
         uri.Fragment - #frag
-After PUrify:
+Uri After PUrify:
         uri.ToString() - http://www.myapi.com/%2F?Foo=Bar%2F#frag
         uri.AbsoluteUri - http://www.myapi.com/%2F?Foo=Bar%2F#frag
         uri.Host - www.myapi.com
