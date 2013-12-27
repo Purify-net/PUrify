@@ -17,7 +17,7 @@ namespace Purify
             if (isMono)
                 return;
 
-            //ShouldUseLegacyV2 Quirks was introduced in .net 4.5
+            //ShouldUseLegacyV2Quirks was introduced in .net 4.5
             //Eventhough 4.5 is an inplace update of 4.0 this call will return 
             //a different value if an application specifically targets 4.0 or 4.5+
             var legacyV2Quirks = typeof(UriParser).GetProperty("ShouldUseLegacyV2Quirks", BindingFlags.Static | BindingFlags.NonPublic);
@@ -45,7 +45,9 @@ namespace Purify
             //
             //  so instead of using reflection perform a one off function test.
 
-            hasBrokenDotNetUri = !new Uri("http://google.com/%2F").ToString().EndsWith("%2F");
+            hasBrokenDotNetUri = !new Uri("http://google.com/%2F")
+                .ToString()
+                .EndsWith("%2F", StringComparison.InvariantCulture);
 
         }
 
