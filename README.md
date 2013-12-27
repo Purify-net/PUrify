@@ -40,29 +40,13 @@ public static void ShowUriDetails(Uri uri)
 
 Running this code will output the following:
 
-```
-Uri String
-        http://www.myapi.com/%2F?Foo=Bar%2F#frag
+## In .NET
 
-Uri Before PUrify:
-        uri.ToString() - http://www.myapi.com//?Foo=Bar/#frag
-        uri.AbsoluteUri - http://www.myapi.com//?Foo=Bar%2F#frag
-        uri.Host - www.myapi.com
-        uri.Query - ?Foo=Bar%2F
-        uri.PathAndQuery - //?Foo=Bar%2F
-        uri.AbsolutePath - //
-        uri.Fragment - #frag
+![dotnet] (https://dl-web.dropbox.com/get/Public/Purify%20Windows.PNG?w=AACT-xT-8fOVgVbBjYK_ghYvsQDDl0r6GoK64g06FCpaGA)
 
-Uri After PUrify:
-        uri.ToString() - http://www.myapi.com/%2F?Foo=Bar%2F#frag
-        uri.AbsoluteUri - http://www.myapi.com/%2F?Foo=Bar%2F#frag
-        uri.Host - www.myapi.com
-        uri.Query - ?Foo=Bar%2F
-        uri.PathAndQuery - /%2F?Foo=Bar%2F
-        uri.AbsolutePath - /%2F
-        uri.Fragment - #frag
+## and in Mono
 
-```
+![mono] (https://dl-web.dropbox.com/get/Public/Purify%20Mono.png?w=AABcE0QR6Yo1mbK9Spo8Q5qS1f1Zk05ctUNcjWQev68oYg)
 
 As you can see, the Uri has been PUrified!  Now you can take that Uri and use it with your favorite .NET Http client.
 
