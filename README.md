@@ -10,36 +10,55 @@ The Uri classes in .NET prior to 4.5 and Mono scrub through your Uris and modify
 PUrify will ensure that the Uri remains untouched. How does it do that? Well it hacks into the Uri internals and ensures that the original Uri is preserved.
 
 # Hello PUrify
-To use PUrify, create a Uri which you want to Purify. Then call the Purify extension method! It will do the rest! Now take that Uri and use it with your favorite .NET Http client.
+To use PUrify, create a Uri which you want to Purify. Then call the Purify extension method! It will do the rest! 
 
 ```csharp
-    static void Main(string[] args)
-    {
-      var uri = new Uri("http://www.myapi.com/%2F?Foo=Bar%2F#frag");
-      uri.Purify();
-      Console.WriteLine ("uri.ToString() - " + uri.ToString ());
-      Console.WriteLine ("uri.AbsoluteUri - " + uri.AbsoluteUri);
-      Console.WriteLine ("uri.Host - " + uri.Host);
-      Console.WriteLine ("uri.Query - " + uri.Query);
-      Console.WriteLine ("uri.PathAndQuery - " + uri.PathAndQuery);
-      Console.WriteLine ("uri.AbsolutePath - " + uri.AbsolutePath);
-      Console.WriteLine ("uri.Fragment - " + uri.Fragment);
-    }
+static void Main(string[] args)
+{
+  var uri = new Uri("http://www.myapi.com/%2F?Foo=Bar%2F#frag");
+  Console.WriteLine("Before PUrify:");
+  ShowUriDetails(uri);           
+  uri.Purify();
+  Console.WriteLine("After PUrify:");
+  ShowUriDetails(uri);
+  Console.ReadLine();
+}
+
+public static void ShowUriDetails(Uri uri)
+{
+  Console.WriteLine("\turi.ToString() - " + uri.ToString());
+  Console.WriteLine("\turi.AbsoluteUri - " + uri.AbsoluteUri);
+  Console.WriteLine("\turi.Host - " + uri.Host);
+  Console.WriteLine("\turi.Query - " + uri.Query);
+  Console.WriteLine("\turi.PathAndQuery - " + uri.PathAndQuery);
+  Console.WriteLine("\turi.AbsolutePath - " + uri.AbsolutePath);
+  Console.WriteLine("\turi.Fragment - " + uri.Fragment);
+}
 ```
 
 Running this code will output the following:
 
 ```
-uri.ToString() - http://www.myapi.com/%2F?Foo=Bar%2F#frag
-uri.AbsoluteUri - http://www.myapi.com/%2F?Foo=Bar%2F#frag
-uri.Host - www.myapi.com
-uri.Query - ?Foo=Bar%2F
-uri.PathAndQuery - /%2F?Foo=Bar%2F
-uri.AbsolutePath - /%2F
-uri.Fragment - #frag
+Before PUrify:
+        uri.ToString() - http://www.myapi.com//?Foo=Bar/#frag
+        uri.AbsoluteUri - http://www.myapi.com//?Foo=Bar%2F#frag
+        uri.Host - www.myapi.com
+        uri.Query - ?Foo=Bar%2F
+        uri.PathAndQuery - //?Foo=Bar%2F
+        uri.AbsolutePath - //
+        uri.Fragment - #frag
+After PUrify:
+        uri.ToString() - http://www.myapi.com/%2F?Foo=Bar%2F#frag
+        uri.AbsoluteUri - http://www.myapi.com/%2F?Foo=Bar%2F#frag
+        uri.Host - www.myapi.com
+        uri.Query - ?Foo=Bar%2F
+        uri.PathAndQuery - /%2F?Foo=Bar%2F
+        uri.AbsolutePath - /%2F
+        uri.Fragment - #frag
+
 ```
 
-As you can see, the Uri has been PUrified!
+As you can see, the Uri has been PUrified!  Now you can take that Uri and use it with your favorite .NET Http client.
 
 # Platforms
 
