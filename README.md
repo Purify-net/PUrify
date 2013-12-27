@@ -42,11 +42,11 @@ Running this code will output the following:
 
 ## In .NET
 
-![dotnet] (https://dl-web.dropbox.com/get/Public/Purify%20Windows.PNG?w=AACT-xT-8fOVgVbBjYK_ghYvsQDDl0r6GoK64g06FCpaGA)
+![dotnet] (https://dl.dropboxusercontent.com/u/6860088/Purify%20Windows.PNG)
 
 ## and in Mono
 
-![mono] (https://dl-web.dropbox.com/get/Public/Purify%20Mono.png?w=AABcE0QR6Yo1mbK9Spo8Q5qS1f1Zk05ctUNcjWQev68oYg)
+![mono] (https://dl.dropboxusercontent.com/u/6860088/Purify%20Mono.png)
 
 As you can see, the Uri has been PUrified!  Now you can take that Uri and use it with your favorite .NET Http client.
 
