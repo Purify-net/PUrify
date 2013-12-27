@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PUrify", "src\PUrify\PUrify.csproj", "{BF743357-4675-437B-8C6C-3A4513D7E163}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PUrify.Tests", "test\PUrify.Tests\PUrify.Tests.csproj", "{4E1AA2F0-C585-4B0D-8ED7-782909E547A8}"
@@ -16,29 +14,29 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BF743357-4675-437B-8C6C-3A4513D7E163}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BF743357-4675-437B-8C6C-3A4513D7E163}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BF743357-4675-437B-8C6C-3A4513D7E163}.Mono Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BF743357-4675-437B-8C6C-3A4513D7E163}.Mono Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BF743357-4675-437B-8C6C-3A4513D7E163}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BF743357-4675-437B-8C6C-3A4513D7E163}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4E1AA2F0-C585-4B0D-8ED7-782909E547A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4E1AA2F0-C585-4B0D-8ED7-782909E547A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4E1AA2F0-C585-4B0D-8ED7-782909E547A8}.Mono Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4E1AA2F0-C585-4B0D-8ED7-782909E547A8}.Mono Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4E1AA2F0-C585-4B0D-8ED7-782909E547A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4E1AA2F0-C585-4B0D-8ED7-782909E547A8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0E870EC8-6001-4E52-B88C-0FFBF3A6D641}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0E870EC8-6001-4E52-B88C-0FFBF3A6D641}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E870EC8-6001-4E52-B88C-0FFBF3A6D641}.Mono Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0E870EC8-6001-4E52-B88C-0FFBF3A6D641}.Mono Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E870EC8-6001-4E52-B88C-0FFBF3A6D641}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E870EC8-6001-4E52-B88C-0FFBF3A6D641}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E1AA2F0-C585-4B0D-8ED7-782909E547A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E1AA2F0-C585-4B0D-8ED7-782909E547A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E1AA2F0-C585-4B0D-8ED7-782909E547A8}.Mono Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E1AA2F0-C585-4B0D-8ED7-782909E547A8}.Mono Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E1AA2F0-C585-4B0D-8ED7-782909E547A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E1AA2F0-C585-4B0D-8ED7-782909E547A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF743357-4675-437B-8C6C-3A4513D7E163}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF743357-4675-437B-8C6C-3A4513D7E163}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF743357-4675-437B-8C6C-3A4513D7E163}.Mono Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF743357-4675-437B-8C6C-3A4513D7E163}.Mono Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF743357-4675-437B-8C6C-3A4513D7E163}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF743357-4675-437B-8C6C-3A4513D7E163}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = sample\HelloPUrify\HelloPUrify.csproj
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = PUrify\PUrify.csproj
 	EndGlobalSection
 EndGlobal
