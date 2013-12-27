@@ -10,11 +10,13 @@ namespace HelloPUrify
     {
         static void Main(string[] args)
         {
-            var uri = new Uri("http://www.myapi.com/%2F?Foo=Bar%2F#frag");
-            Console.WriteLine("Before PUrify:");
+            string uriString = "http://www.myapi.com/%2F?Foo=Bar%2F#frag";
+            var uri = new Uri(uriString);
+            Console.WriteLine("Uri String\n\t" + uriString);
+            Console.WriteLine("Uri Before PUrify:");
             ShowUriDetails(uri);           
             uri.Purify();
-            Console.WriteLine("After PUrify:");
+            Console.WriteLine("Uri After PUrify:");
             ShowUriDetails(uri);
             Console.ReadLine();
         }
