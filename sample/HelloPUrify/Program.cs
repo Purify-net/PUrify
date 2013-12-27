@@ -13,10 +13,10 @@ namespace HelloPUrify
             string uriString = "http://www.myapi.com/%2F?Foo=Bar%2F#frag";
             var uri = new Uri(uriString);
             Console.WriteLine("Uri String\n\t" + uriString);
-            Console.WriteLine("Uri Before PUrify:");
+            Console.WriteLine("\nUri Before PUrify:");
             ShowUriDetails(uri);           
             uri.Purify();
-            Console.WriteLine("Uri After PUrify:");
+            Console.WriteLine("\nUri After PUrify:");
             ShowUriDetails(uri);
             Console.ReadLine();
         }
