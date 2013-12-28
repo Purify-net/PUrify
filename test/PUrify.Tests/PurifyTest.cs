@@ -12,9 +12,10 @@ namespace PUrify.Tests
 {
     public class PurifyTest
     {
+      
         public class ThePurifyMethod
         {
-            private Uri _uri;
+            private readonly Uri _uri;
 
             public ThePurifyMethod()
             {
@@ -57,7 +58,6 @@ namespace PUrify.Tests
             {
                 _uri.Fragment.ShouldEqual("#frag");
             }
-
         }
 
     }
