@@ -63,3 +63,6 @@ Credits to the following folks:
 
 * [Matt McClure] (https://github.com/matthewlmcclure) for his review of the Mono version and for pointing out how to properly handle fragments.
 
+# License
+
+[Apache 2] (https://github.com/glennblock/PUrify/blob/master/LICENSE)
