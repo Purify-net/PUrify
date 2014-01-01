@@ -13,6 +13,6 @@
         <language />
     </metadata>
     <files>
-        <file src="lib\net35\PUrify.dll" target="lib\net35\PUrify.dll" />
+        <file src="bin\release\PUrify.dll" target="lib\net35\PUrify.dll" />
     </files>
 </package>
