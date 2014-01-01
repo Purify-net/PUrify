@@ -51,5 +51,8 @@
     <Compile Include="PurifierMono.cs" />
     <Compile Include="UriInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="PUrify.nuspec.nupkg" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
