@@ -1,18 +1,17 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
-    <metadata>
-        <id>PUrify</id>
-        <version>0.1.0.0</version>
-        <title>PUrify</title>
-        <authors>Glenn Block</authors>
-        <owners>Glenn Block</owners>
-        <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>Purify cleanses your Uris allowing reserved pct-encoded characters to remain encoded.</description>
-        <summary>Purify those Uris</summary>
-        <copyright>Copyright 2013 Glenn Block</copyright>
-        <language />
-    </metadata>
-    <files>
-        <file src="bin\release\PUrify.dll" target="lib\net35\PUrify.dll" />
-    </files>
+  <metadata>
+    <version>$version$</version>
+    <authors>gblock</authors>
+    <owners>gblock</owners>
+    <licenseUrl>https://raw.github.com/glennblock/PUrify/master/LICENSE</licenseUrl>
+    <projectUrl>https://raw.github.com/glennblock/PUrify/</projectUrl>
+    <id>PUrify</id>
+    <title>PUrify</title>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>The Uri classes in .NET prior to 4.5 and Mono scrub through your Uris and modify them in order to prevent vulnerabilities, for example escaped slashes are unescaped. This scrubbing however prevents Uris that are inline with RFC 3986. Beyond that it prevents using .NET's HTTP clients (HttpClient and WebClient) to talk to APIs that require accessing resources using escaped slashes unless you are using .NET 4.5. PUrify will ensure that the Uri remains untouched. How does it do that? Well it hacks into the Uri internals and ensures that the original Uri is preserved.</description>
+    <summary>PUrify - Your Uris have been PUrified!</summary>
+    <copyright>Copyright 2013 - 2014 Glenn Block</copyright>
+    <tags>uri tools purify url api rfc webclient httpclient</tags>
+  </metadata>
 </package>
