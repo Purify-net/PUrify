@@ -20,7 +20,7 @@ namespace PUrify
 
         static PurifierDotNet()
         {
-            var uriType = typeof (Uri);
+            var uriType = typeof(Uri);
             flagsField = uriType.GetField("m_Flags", BindingFlags.NonPublic | BindingFlags.Instance);
             stringField = uriType.GetField("m_String", BindingFlags.NonPublic | BindingFlags.Instance);
             infoField = uriType.GetField("m_Info", BindingFlags.NonPublic | BindingFlags.Instance);

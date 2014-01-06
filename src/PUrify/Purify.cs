@@ -51,8 +51,6 @@ namespace Purify
 
         }
 
-
-
         public static void Purify(this Uri uri)
         {
             IPurifier purifier = null;
