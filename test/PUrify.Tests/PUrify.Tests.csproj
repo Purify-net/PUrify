@@ -7,7 +7,7 @@
     <ProjectGuid>{4E1AA2F0-C585-4B0D-8ED7-782909E547A8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Pucrify.Tests</RootNamespace>
+    <RootNamespace>Purify.Tests</RootNamespace>
     <AssemblyName>PUrify.Tests</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="PurifyTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UriInfoTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\PUrify\PUrify.csproj">

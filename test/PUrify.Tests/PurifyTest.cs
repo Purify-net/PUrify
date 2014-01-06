@@ -58,6 +58,16 @@ namespace PUrify.Tests
             {
                 _uri.Fragment.ShouldEqual("#frag");
             }
+
+            [Fact]
+            public void DoesNotThrowIfNoQueryIsSpecified()
+            {
+                var uri = new Uri("http://localhost/%2F");
+                Assert.DoesNotThrow(uri.Purify);
+                uri.AbsoluteUri.ShouldEqual("http://localhost/%2F");
+                uri.AbsolutePath.ShouldEqual("/%2F");
+            }
+
         }
 
     }
