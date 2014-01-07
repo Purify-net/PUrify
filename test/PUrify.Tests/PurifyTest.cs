@@ -16,6 +16,7 @@ namespace PUrify.Tests
         public class ThePurifyMethod
         {
             private readonly Uri _uri;
+            private readonly string _url = "http://localhost/%2F";
 
             public ThePurifyMethod()
             {
@@ -57,6 +58,47 @@ namespace PUrify.Tests
             public void UriFragmentIsProperlySet()
             {
                 _uri.Fragment.ShouldEqual("#frag");
+            }
+
+            [Fact]
+            public void DoesNotThrowIfNoQueryIsSpecified()
+            {
+                var uri = new Uri(_url);
+                Assert.DoesNotThrow(uri.Purify);
+                uri.AbsoluteUri.ShouldEqual(_url);
+                uri.AbsolutePath.ShouldEqual("/%2F");
+            }
+
+            [Fact]
+            public void CanHandleAbsoluteUri()
+            {
+                var uri = new Uri(_url, UriKind.Absolute);
+                Assert.DoesNotThrow(uri.Purify);
+                uri.AbsoluteUri.ShouldEqual(_url);
+            }
+
+            [Fact]
+            public void CanHandleRelativeUri()
+            {
+                var uri = new Uri("../something", UriKind.Relative);
+                Assert.DoesNotThrow(uri.Purify);
+                uri.ToString().ShouldEqual("../something");
+            }
+
+            [Fact]
+            public void CanHandleAbsoluteOrRelativeUri_RelativeGiven()
+            {
+                var uri = new Uri("../something", UriKind.RelativeOrAbsolute);
+                Assert.DoesNotThrow(uri.Purify);
+                uri.ToString().ShouldEqual("../something");
+            }
+
+            [Fact]
+            public void CanHandleAbsoluteOrRelativeUri_AbsoluteGiven()
+            {
+                var uri = new Uri(_url, UriKind.RelativeOrAbsolute);
+                Assert.DoesNotThrow(uri.Purify);
+                uri.ToString().ShouldEqual(_url);
             }
         }
 
