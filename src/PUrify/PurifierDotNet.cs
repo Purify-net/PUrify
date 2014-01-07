@@ -36,6 +36,9 @@ namespace PUrify
         //Code inspired by Rasmus Faber's solution in this post: http://stackoverflow.com/questions/781205/getting-a-url-with-an-url-encoded-slash
         public void Purify(Uri uri)
         {
+            if (!uri.IsAbsoluteUri)
+                return;
+
             string paq = uri.PathAndQuery; // need to access PathAndQuery
             var abs = uri.AbsoluteUri; //need to access this as well the MoreInfo prop is initialized.
             ulong flags = (ulong)flagsField.GetValue(uri);
