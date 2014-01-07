@@ -17,11 +17,14 @@ namespace PUrify.Tests
         {
             private readonly Uri _uri;
             private readonly string _url = "http://localhost/%2F";
+            private string _rewriteRelativeUrl = "../%2F" + "-rewrite";
+            private string _rewriteAbsoluteUrl;
 
             public ThePurifyMethod()
             {
                 _uri = new Uri("http://www.myapi.com/%2F?Foo=Bar%2F#frag");
                 _uri.Purify();
+                _rewriteAbsoluteUrl = _url + "-rewrite";
             }
 
             [Fact]
@@ -99,6 +102,39 @@ namespace PUrify.Tests
                 var uri = new Uri(_url, UriKind.RelativeOrAbsolute);
                 Assert.DoesNotThrow(uri.Purify);
                 uri.ToString().ShouldEqual(_url);
+            }
+
+
+            [Fact]
+            public void CanJoinRelativeOntoAbsolute()
+            {
+                var uri = new Uri(new Uri(_url), new Uri(_rewriteRelativeUrl, UriKind.Relative));
+                Assert.DoesNotThrow(uri.Purify);
+                uri.ToString().ShouldEqual(_rewriteAbsoluteUrl);
+            }
+
+            [Fact]
+            public void CanJoinAbsoluteOntoAbsolute()
+            {
+                var uri = new Uri(new Uri(_url), new Uri(_rewriteAbsoluteUrl, UriKind.Absolute));
+                Assert.DoesNotThrow(uri.Purify);
+                uri.ToString().ShouldEqual(_rewriteAbsoluteUrl);
+            }
+
+            [Fact]
+            public void CanJoinRelativeOntoAbsolute_StringGiven()
+            {
+                var uri = new Uri(new Uri(_url), _rewriteRelativeUrl);
+                Assert.DoesNotThrow(uri.Purify);
+                uri.ToString().ShouldEqual(_rewriteAbsoluteUrl);
+            }
+
+            [Fact]
+            public void CanJoinAbsoluteOntoAbsolute_StringGiven()
+            {
+                var uri = new Uri(new Uri(_url), _rewriteAbsoluteUrl);
+                Assert.DoesNotThrow(uri.Purify);
+                uri.ToString().ShouldEqual(_rewriteAbsoluteUrl);
             }
         }
 
