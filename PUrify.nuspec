@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>PUrify</id>
+    <version>1.0.0</version>
+    <authors>Glenn Block</authors>
+    <owners>Glenn Block</owners>
+    <licenseUrl>https://raw.github.com/glennblock/PUrify/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/glennblock/PUrify</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Fixes the Uri class for RFC 3986 compliance.</description>
+    <releaseNotes>First public release.</releaseNotes>
+    <copyright>Copyright 2013-2014 Glenn Block</copyright>
+    <tags>rfc 3986 uri</tags>
+  </metadata>
+  <files>
+    <file src="src\PUrify\bin\Release\PUrify.dll" target="lib\net35" />
+  </files>
+</package>
