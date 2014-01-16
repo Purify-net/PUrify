@@ -53,16 +53,17 @@ namespace Purify
 
 
 
-        public static void Purify(this Uri uri)
+        public static Uri Purify(this Uri uri)
         {
             IPurifier purifier = null;
             if (isMono)
                 purifier = new PurifierMono();
             else if (hasBrokenDotNetUri)
                 purifier = new PurifierDotNet();
-            else return;
+            else return uri;
             
             purifier.Purify(uri);
+            return uri;
         }
     }
 }
