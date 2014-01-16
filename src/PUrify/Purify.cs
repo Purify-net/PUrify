@@ -1,8 +1,7 @@
 using System;
 using System.Reflection;
-using PUrify;
 
-namespace Purify
+namespace PUrify
 {
     public static class Purifier
     {
@@ -50,8 +49,6 @@ namespace Purify
                 .EndsWith("%2F", StringComparison.InvariantCulture);
 
         }
-
-
 
         public static void Purify(this Uri uri)
         {
