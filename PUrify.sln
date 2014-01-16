@@ -1,15 +1,20 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PUrify", "src\PUrify\PUrify.csproj", "{BF743357-4675-437B-8C6C-3A4513D7E163}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PUrify.Tests", "test\PUrify.Tests\PUrify.Tests.csproj", "{4E1AA2F0-C585-4B0D-8ED7-782909E547A8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloPUrify", "sample\HelloPUrify\HelloPUrify.csproj", "{0E870EC8-6001-4E52-B88C-0FFBF3A6D641}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Purify.Test.Clients.Net40", "Purify.Test.Clients.Net40\Purify.Test.Clients.Net40.csproj", "{090F7B6A-A6D6-447E-AFAA-43E207F3AB19}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PUrify.IntegrationTests.Clients", "test\PUrify.IntegrationTests.Clients\PUrify.IntegrationTests.Clients.csproj", "{090F7B6A-A6D6-447E-AFAA-43E207F3AB19}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{42548FC1-AF40-4E4E-A207-3D053FD0841C}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
