@@ -48,23 +48,6 @@ namespace PUrify.IntegrationTests.Clients
                 webRequest.RequestUri.AbsoluteUri.EndsWith("/%2F").ShouldBeTrue();
             }
 
-            [Fact]
-            public void TestStringConstructorOnWebRequest_CreateHttp()
-            {
-                var webRequest = WebRequest.CreateHttp(_url);
-                webRequest.RequestUri.AbsoluteUri.EndsWith("/%2F").ShouldBeFalse();
-                webRequest.RequestUri.Purify();
-                webRequest.RequestUri.AbsoluteUri.EndsWith("/%2F").ShouldBeTrue();
-            }
-
-            [Fact]
-            public void TestUriConstructorOnWebRequest_CreateHttp()
-            {
-                var webRequest = WebRequest.CreateHttp(new Uri(_url));
-                webRequest.RequestUri.AbsoluteUri.EndsWith("/%2F").ShouldBeFalse();
-                webRequest.RequestUri.Purify();
-                webRequest.RequestUri.AbsoluteUri.EndsWith("/%2F").ShouldBeTrue();
-            }
 
             [Fact]
             public void TestUriConstructorOnWebRequest_CreateDefault()
