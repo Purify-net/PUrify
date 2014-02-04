@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using Microsoft.Owin.Hosting;
+using System.Net;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -9,10 +10,13 @@ namespace PUrify.IntegrationTests.Clients
         [Fact]
         public async Task WebClient()
         {
-            var uri = this.CreateUri(this._path);
-            var client = new WebClient();
-            var body = client.DownloadString(uri);
-            Assert.Equal(body, this._path);
+            using (WebApp.Start<OwinStartup>("http://localhost:5000"))
+            {
+                var uri = this.CreateUri(this._path);
+                var client = new WebClient();
+                var body = client.DownloadString(uri);
+                Assert.Equal(body, this._path);
+            }
         }
     }
 }
