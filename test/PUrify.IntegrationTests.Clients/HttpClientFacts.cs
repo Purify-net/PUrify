@@ -5,13 +5,14 @@ using Microsoft.Owin.Hosting;
 using Should;
 using Xunit;
 
-namespace PUrify.IntegrationTests.Clients.HttpClient
+namespace PUrify.IntegrationTests.Clients
 {
     public class HttpClientFacts
     {
         public class GetAsyncMethod
         {
             private readonly string _body;
+
             public GetAsyncMethod()
             {
                 using (WebApp.Start<OwinStartup>(RequestConfiguration.Url))
@@ -21,6 +22,7 @@ namespace PUrify.IntegrationTests.Clients.HttpClient
                     _body = result.Content.ReadAsStringAsync().Result;
                 }    
             }
+
             [Fact]
             public void ReturnsPathInResponseBody()
             {
@@ -41,6 +43,7 @@ namespace PUrify.IntegrationTests.Clients.HttpClient
                     _body = result.Content.ReadAsStringAsync().Result;
                 } 
             }
+
             [Fact]
             public void ReturnsPathInResponseBody()
             {
@@ -95,30 +98,43 @@ namespace PUrify.IntegrationTests.Clients.HttpClient
 
         public class GetStringAsyncMethod
         {
-            [Fact]
-            public async Task ReturnsPathInResponseBody()
+            private readonly string _body;
+
+            public GetStringAsyncMethod()
             {
                 using (WebApp.Start<OwinStartup>(RequestConfiguration.Path))
                 {
                     var client = new System.Net.Http.HttpClient();
-                    var body = await client.GetStringAsync(RequestConfiguration.Uri);
-                    body.ShouldEqual(RequestConfiguration.Path);
+                    _body = client.GetStringAsync(RequestConfiguration.Uri).Result;
                 }
+             
+            }
+
+            [Fact]
+            public void ReturnsPathInResponseBody()
+            {
+                _body.ShouldEqual(RequestConfiguration.Path);
             }
         }
 
         public class DeleteAsyncMethod
         {
-            [Fact]
-            public async Task ReturnsPathInResponseBody()
+            private readonly string _body;
+
+            public DeleteAsyncMethod()
             {
                 using (WebApp.Start<OwinStartup>(RequestConfiguration.Path))
                 {
                     var client = new System.Net.Http.HttpClient();
-                    var result = await client.DeleteAsync(RequestConfiguration.Uri);
-                    var body = await result.Content.ReadAsStringAsync();
-                    body.ShouldEqual(RequestConfiguration.Path);
+                    var result = client.DeleteAsync(RequestConfiguration.Uri).Result;
+                    _body = result.Content.ReadAsStringAsync().Result;
                 }
+            }
+
+            [Fact]
+            public void ReturnsPathInResponseBody()
+            {
+                _body.ShouldEqual(RequestConfiguration.Path);
             }
         }
     }
