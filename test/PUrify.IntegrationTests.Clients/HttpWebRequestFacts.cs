@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.CodeDom;
+using System.IO;
 using System.Net;
 using System.Reflection;
 using System.Text;
@@ -13,97 +14,122 @@ namespace PUrify.IntegrationTests.Clients
     {
         public class PostUsingIAsyncPattern
         {
-            [Fact]
-            public async Task ReturnsPathInResponseBody()
+            private readonly string _body;
+
+            public PostUsingIAsyncPattern()
             {
-                using (WebApp.Start<OwinStartup>(RequestConfiguration.Url))
+                 using (WebApp.Start<OwinStartup>(RequestConfiguration.Url))
                 {
                     var client = (HttpWebRequest) WebRequest.Create(RequestConfiguration.Uri);
                     client.Method = "POST";
-                    var requestStream = await Task.Factory.FromAsync<Stream>(client.BeginGetRequestStream, client.EndGetRequestStream, null);
+                    var requestStream = Task.Factory.FromAsync<Stream>(client.BeginGetRequestStream, client.EndGetRequestStream, null).Result;
                     using (requestStream)
                     {
                         var buffer = Encoding.UTF8.GetBytes("asd");
-                        await Task.Factory.FromAsync(requestStream.BeginWrite, requestStream.EndWrite, buffer, 0, buffer.Length, null);
+                        var x = Task.Factory.FromAsync(requestStream.BeginWrite, requestStream.EndWrite, buffer, 0, buffer.Length, null);
+                        x.GetAwaiter().GetResult();
                     }
 
                     var response = (HttpWebResponse) 
-                        await Task.Factory.FromAsync<WebResponse>(client.BeginGetResponse, client.EndGetResponse, null);
+                        Task.Factory.FromAsync<WebResponse>(client.BeginGetResponse, client.EndGetResponse, null).Result;
                     using (response)
                     using (var responseStream = response.GetResponseStream())
                     using (var sr = new StreamReader(responseStream))
                     {
-                        var body = await sr.ReadToEndAsync();
-                        body.ShouldEqual(RequestConfiguration.Path);
+                        _body = sr.ReadToEndAsync().Result;
                     }
                 }
+               
+            }
+
+            [Fact]
+            public async Task ReturnsPathInResponseBody()
+            {
+                _body.ShouldEqual(RequestConfiguration.Path);
             }
         }
 
         public class GetUsingIAsyncPattern
         {
-            [Fact]
-            public async Task ReturnsPathInResponseBody()
+            private readonly string _body;
+            public GetUsingIAsyncPattern()
             {
                 using (WebApp.Start<OwinStartup>(RequestConfiguration.Url))
                 {
                     var client = (HttpWebRequest) WebRequest.Create(RequestConfiguration.Uri);
                     client.Method = "GET";
                     var response = (HttpWebResponse)
-                            await Task.Factory.FromAsync<WebResponse>(client.BeginGetResponse, client.EndGetResponse, null);
+                            Task.Factory.FromAsync<WebResponse>(client.BeginGetResponse, client.EndGetResponse, null).Result;
                     using (response)
                     using (var responseStream = response.GetResponseStream())
                     using (var sr = new StreamReader(responseStream))
                     {
-                        var body = await sr.ReadToEndAsync();
-                        body.ShouldEqual(RequestConfiguration.Path);
+                        _body = sr.ReadToEndAsync().Result;
                     }
-                }
+                }     
+            }
+
+            [Fact]
+            public async Task ReturnsPathInResponseBody()
+            {
+                _body.ShouldEqual(RequestConfiguration.Path);
             }
         }
 
         public class PostAsync
         {
-            [Fact]
-            public async Task ReturnsPathInResponseBody()
+            private readonly string _body;
+
+            public PostAsync()
             {
-                using (WebApp.Start<OwinStartup>(RequestConfiguration.Url))
+                 using (WebApp.Start<OwinStartup>(RequestConfiguration.Url))
                 {
                     var client = (HttpWebRequest) WebRequest.Create(RequestConfiguration.Uri);
                     client.Method = "POST";
-                    using (var requestStream = await client.GetRequestStreamAsync())
+                    using (var requestStream = client.GetRequestStreamAsync().Result)
                     {
                         var buffer = Encoding.UTF8.GetBytes("asd");
-                        await requestStream.WriteAsync(buffer, 0, buffer.Length);
+                        requestStream.WriteAsync(buffer, 0, buffer.Length).GetAwaiter().GetResult();
                     }
-                    using (var response = await client.GetResponseAsync())
+                    using (var response = client.GetResponseAsync().Result)
                     using (var responseStream = response.GetResponseStream())
                     using (var sr = new StreamReader(responseStream))
                     {
-                        var body = await sr.ReadToEndAsync();
-                        body.ShouldEqual(RequestConfiguration.Path);
+                        _body = sr.ReadToEndAsync().Result;
                     }
-                }
+                }    
+            }
+
+            [Fact]
+            public async Task ReturnsPathInResponseBody()
+            {
+                _body.ShouldEqual(RequestConfiguration.Path);
             }
         }
 
         public class GetAsync
         {
-            [Fact]
-            public async Task ReturnsPathInResponseBody()
+            private readonly string _body;
+
+            public GetAsync()
             {
                 using (WebApp.Start<OwinStartup>(RequestConfiguration.Url))
                 {
                     var client = (HttpWebRequest) WebRequest.Create(RequestConfiguration.Uri);
                     client.Method = "GET";
-                    using (var response = await client.GetResponseAsync())
+                    using (var response = client.GetResponseAsync().Result)
                     using (var responseStream = response.GetResponseStream())
                     using (var sr = new StreamReader(responseStream))
                     {
-                        var body = await sr.ReadToEndAsync();
-                        body.ShouldEqual(RequestConfiguration.Path);
+                        _body = sr.ReadToEndAsync().Result;
                     }
-                }
+                } 
+            }
+
+            [Fact]
+            public void ReturnsPathInResponseBody()
+            {
+                _body.ShouldEqual(RequestConfiguration.Path);
             }
         }
     }

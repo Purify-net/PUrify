@@ -10,15 +10,19 @@ namespace PUrify.IntegrationTests.Clients
     {
         public class DownloadStringMethod
         {
-            [Fact]
-            public void ReturnsPathInResponseBody()
+            private readonly string _body;
+            public DownloadStringMethod()
             {
                 using (WebApp.Start<OwinStartup>(RequestConfiguration.Url))
                 {
                     var client = new WebClient();
-                    var body = client.DownloadString(RequestConfiguration.Uri);
-                    body.ShouldEqual(RequestConfiguration.Path);
-                }
+                    _body = client.DownloadString(RequestConfiguration.Uri);
+                } 
+            }
+            [Fact]
+            public void ReturnsPathInResponseBody()
+            {
+                _body.ShouldEqual(RequestConfiguration.Path);
             }
         }
     }

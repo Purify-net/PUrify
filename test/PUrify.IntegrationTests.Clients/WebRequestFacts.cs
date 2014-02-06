@@ -9,25 +9,37 @@ namespace PUrify.IntegrationTests.Clients
     {
         public class FactoryCreate
         {
-            private readonly Uri _uri = new Uri("http://localhost/%2F").Purify();
+            private readonly Uri _uri; 
+
+            public FactoryCreate()
+            {
+                var uriGoingIn = new Uri("http://localhost/%2F").Purify();
+                var webRequest = WebRequest.Create(uriGoingIn);
+                _uri = webRequest.RequestUri;
+            }
 
             [Fact]
             public void UriArgument_DoesNotLoosePurifiedUri()
             {
-                var webRequest = WebRequest.Create(this._uri);
-                webRequest.RequestUri.AbsoluteUri.EndsWith("/%2F").ShouldBeTrue();
+                _uri.AbsoluteUri.EndsWith("/%2F").ShouldBeTrue();
             }
         }
 
         public class FactoryCreateDefault
         {
-            private readonly Uri _uri = new Uri("http://localhost/%2F").Purify();
+            private readonly Uri _uri;
+
+            public FactoryCreateDefault()
+            {
+                var uriGoingIn = new Uri("http://localhost/%2F").Purify();
+                var webRequest = WebRequest.CreateDefault(uriGoingIn);
+                _uri = webRequest.RequestUri;
+            }
 
             [Fact]
             public void UriArgument_DoesNotLoosPurifiedUri()
             {
-                var webRequest = WebRequest.CreateDefault(this._uri);
-                webRequest.RequestUri.AbsoluteUri.EndsWith("/%2F").ShouldBeTrue();
+                _uri.AbsoluteUri.EndsWith("/%2F").ShouldBeTrue();
             }
         }
     }

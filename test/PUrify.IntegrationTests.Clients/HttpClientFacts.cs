@@ -1,74 +1,95 @@
 ﻿using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Microsoft.Owin.Hosting;
 using Should;
 using Xunit;
-using Microsoft.Owin.Hosting;
 
-namespace PUrify.IntegrationTests.Clients
+namespace PUrify.IntegrationTests.Clients.HttpClient
 {
     public class HttpClientFacts
     {
         public class GetAsyncMethod
         {
-            [Fact]
-            public async Task ReturnsPathInResponseBody()
+            private readonly string _body;
+            public GetAsyncMethod()
             {
                 using (WebApp.Start<OwinStartup>(RequestConfiguration.Url))
                 {
-                    var client = new HttpClient();
-                    var result = await client.GetAsync(RequestConfiguration.Uri);
-                    var body = await result.Content.ReadAsStringAsync();
-                    body.ShouldEqual(RequestConfiguration.Path);
-                }
+                    var client = new System.Net.Http.HttpClient();
+                    var result = client.GetAsync(RequestConfiguration.Uri).Result;
+                    _body = result.Content.ReadAsStringAsync().Result;
+                }    
+            }
+            [Fact]
+            public void ReturnsPathInResponseBody()
+            {
+                _body.ShouldEqual(RequestConfiguration.Path);
             }
         }
 
         public class PostAsyncMethod
         {
-            [Fact]
-            public async Task ReturnsPathInResponseBody()
+            private readonly string _body;
+
+            public PostAsyncMethod()
             {
                 using (WebApp.Start<OwinStartup>(RequestConfiguration.Url))
                 {
-                    var client = new HttpClient();
-                    var result = await client.PostAsync(RequestConfiguration.Uri, new StringContent("ads"));
-                    var body = await result.Content.ReadAsStringAsync();
-                    body.ShouldEqual(RequestConfiguration.Path);
-                }
+                    var client = new System.Net.Http.HttpClient();
+                    var result = client.PostAsync(RequestConfiguration.Uri, new StringContent("ads")).Result;
+                    _body = result.Content.ReadAsStringAsync().Result;
+                } 
+            }
+            [Fact]
+            public void ReturnsPathInResponseBody()
+            {
+                _body.ShouldEqual(RequestConfiguration.Path);
             }
         }
 
         public class PutAsyncMethod
         {
-            [Fact]
-            public async Task ReturnsPathInResponseBody()
+            private readonly string _body;
+
+            public PutAsyncMethod()
             {
                 using (WebApp.Start<OwinStartup>(RequestConfiguration.Url))
                 {
-                    var client = new HttpClient();
-                    var result = await client.PutAsync(RequestConfiguration.Uri, new StringContent("ads"));
-                    var body = await result.Content.ReadAsStringAsync();
-                    body.ShouldEqual(RequestConfiguration.Path);
-                }
+                    var client = new System.Net.Http.HttpClient();
+                    var result = client.PutAsync(RequestConfiguration.Uri, new StringContent("ads")).Result;
+                    _body = result.Content.ReadAsStringAsync().Result;
+                }     
+            }
+
+            [Fact]
+            public void ReturnsPathInResponseBody()
+            {
+                _body.ShouldEqual(RequestConfiguration.Path);
             }
         }
 
         public class GetStreamAsyncMethod
         {
-            [Fact]
-            public async Task ReturnsPathInResponseBody()
+            private readonly string _body;
+
+            public GetStreamAsyncMethod()
             {
-                using (WebApp.Start<OwinStartup>(RequestConfiguration.Url))
+                 using (WebApp.Start<OwinStartup>(RequestConfiguration.Url))
                 {
-                    var client = new HttpClient();
-                    using (var result = await client.GetStreamAsync(RequestConfiguration.Uri))
+                    var client = new System.Net.Http.HttpClient();
+                    using (var result = client.GetStreamAsync(RequestConfiguration.Uri).Result)
                     using (var sr = new StreamReader(result))
                     {
-                        var body = await sr.ReadToEndAsync();
-                        body.ShouldEqual(RequestConfiguration.Path);
+                        _body = sr.ReadToEndAsync().Result;
                     }
-                }
+                }    
+            }
+
+            [Fact]
+            public void ReturnsPathInResponseBody()
+            {
+                _body.ShouldEqual(RequestConfiguration.Path);
             }
         }
 
@@ -79,7 +100,7 @@ namespace PUrify.IntegrationTests.Clients
             {
                 using (WebApp.Start<OwinStartup>(RequestConfiguration.Path))
                 {
-                    var client = new HttpClient();
+                    var client = new System.Net.Http.HttpClient();
                     var body = await client.GetStringAsync(RequestConfiguration.Uri);
                     body.ShouldEqual(RequestConfiguration.Path);
                 }
@@ -93,7 +114,7 @@ namespace PUrify.IntegrationTests.Clients
             {
                 using (WebApp.Start<OwinStartup>(RequestConfiguration.Path))
                 {
-                    var client = new HttpClient();
+                    var client = new System.Net.Http.HttpClient();
                     var result = await client.DeleteAsync(RequestConfiguration.Uri);
                     var body = await result.Content.ReadAsStringAsync();
                     body.ShouldEqual(RequestConfiguration.Path);
