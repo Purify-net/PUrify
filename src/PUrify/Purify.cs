@@ -52,6 +52,9 @@ namespace PUrify
 
         public static Uri Purify(this Uri uri)
         {
+            if (!uri.IsAbsoluteUri)
+                return uri;
+
             IPurifier purifier = null;
             if (isMono)
                 purifier = new PurifierMono();
