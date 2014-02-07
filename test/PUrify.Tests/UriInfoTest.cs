@@ -93,15 +93,15 @@ namespace PUrify.Tests
                 _uri.ToString().ShouldEqual(_uriInfo.Source);
             }
             [Fact]
-            public void PortShouldNotBePartOfThePath()
+            public void PathShouldBeAForwardSlash()
             {
-                _uriInfo.Path.ShouldEqual("");
+                _uri.AbsolutePath.ShouldEqual("/");
             }
 
             [Fact]
             public void PathShouldContainQueryString()
             {
-                _uri.PathAndQuery.ShouldEqual("?authToken=ABCDEFGHIJK");
+                _uri.PathAndQuery.ShouldEqual("/?authToken=ABCDEFGHIJK");
             }  
 
             [Fact]
