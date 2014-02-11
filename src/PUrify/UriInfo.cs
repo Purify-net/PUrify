@@ -6,10 +6,14 @@ using System.Text;
 
 namespace Purify
 {
+
     internal class UriInfo
     {
         public string Path { get; private set; }
+
         public string Query { get; private set; }
+
+        public string Source { get; set; }
 
         public UriInfo(Uri uri, string source)
         {
@@ -29,7 +33,17 @@ namespace Purify
 
             Path = queryPos > -1 ? source.Substring(start, pathEnd - start) : source.Substring(start);
 
-            Query = fragPos > -1 ? source.Substring(queryPos, fragPos - queryPos) : null;
+            Query = fragPos > -1 
+                ? source.Substring(queryPos, fragPos - queryPos)
+                : queryPos > -1
+                    ? source.Substring(queryPos, (source.Length - queryPos)) 
+                    : null;
+
+            Source = source;
+            if (start < source.Length - 1 && !(new [] { ':', '/' }.Contains(source[start])))
+            {
+                Source = source.Insert(start, "/");
+            }
 
         }
     }
