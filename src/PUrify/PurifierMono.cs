@@ -29,11 +29,11 @@ namespace PUrify
         public void Purify(Uri uri)
         {
             var source = (string)mono_sourceField.GetValue(uri);
-            mono_cachedToStringField.SetValue(uri, source);
-            mono_cachedAbsoluteUriField.SetValue(uri, source);
             var uriInfo = new UriInfo(uri, source);
             mono_pathField.SetValue(uri, uriInfo.Path);
             mono_queryField.SetValue(uri, uriInfo.Query);
+            mono_cachedToStringField.SetValue(uri, uriInfo.Source);
+            mono_cachedAbsoluteUriField.SetValue(uri, uriInfo.Source);
         }
     }
 }

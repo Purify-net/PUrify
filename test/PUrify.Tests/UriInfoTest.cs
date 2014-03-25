@@ -94,5 +94,51 @@ namespace PUrify.Tests
                 _uri.UserInfo.ShouldEqual("mpdreamz:hasapassword");
             }
         }
+
+
+        public class ConstructorWithOnlyQueryString
+        {
+            private UriInfo _uriInfo;
+            private Uri _uri;
+
+            public ConstructorWithOnlyQueryString()
+            {
+                var path = "?authToken=ABCDEFGHIJK";
+                var url = "http://localhost";
+                var uri = new Uri(url);
+                _uriInfo = new UriInfo(new Uri(uri, path).Purify(), url + path);
+                _uri = new Uri(uri, path).Purify();
+            }
+
+            [Fact]
+            public void ShouldStartPathWithAForwardSlash()
+            {
+                _uriInfo.Source.ShouldEqual("http://localhost/?authToken=ABCDEFGHIJK");
+            }
+
+            [Fact]
+            public void UriToStringShouldBeEqualToUriInfoSource()
+            {
+                _uri.ToString().ShouldEqual(_uriInfo.Source);
+            }
+
+            [Fact]
+            public void PortShouldNotBePartOfThePath()
+            {
+                _uri.AbsolutePath.ShouldEqual("/");
+            }
+
+            [Fact]
+            public void PathShouldContainQueryString()
+            {
+                _uri.PathAndQuery.ShouldEqual("/?authToken=ABCDEFGHIJK");
+            }  
+
+            [Fact]
+            public void QueryStringPropertyShouldNotBeBlank()
+            {
+                _uri.Query.ShouldEqual("?authToken=ABCDEFGHIJK");
+            }
+        }
     }
 }
