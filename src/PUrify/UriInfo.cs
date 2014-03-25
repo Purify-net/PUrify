@@ -46,7 +46,7 @@ namespace Purify
             // so that the purifiers can adjust private fields accordingly
 
             Source = source;
-            if (start < source.Length - 1 && !(new [] { ':', '/' }.Contains(source[start])))
+            if (start < source.Length - 1 && source[start] != ':' && source[start] != '/')
             {
                 Source = source.Insert(start, "/");
             }
