@@ -30,7 +30,11 @@ namespace PUrify
         {
             var source = (string)mono_sourceField.GetValue(uri);
             var uriInfo = new UriInfo(uri, source);
-            mono_pathField.SetValue(uri, uriInfo.Path);
+            mono_pathField.SetValue(uri, 
+                uriInfo.Path.StartsWith("/") 
+                    ? uriInfo.Path 
+                    : "/" + uriInfo.Path
+            );
             mono_queryField.SetValue(uri, uriInfo.Query);
             mono_cachedToStringField.SetValue(uri, uriInfo.Source);
             mono_cachedAbsoluteUriField.SetValue(uri, uriInfo.Source);
