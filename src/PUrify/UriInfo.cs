@@ -38,14 +38,12 @@ namespace Purify
                     : null;
             
             
-            //we need to manually fix a situation where the first character after the source is not a : /
-            //
             // var u = new Uri("http://localhost/");
             // var uri = new Uri(uri, "?auth=123455");
             //
-            // uri ToString() would print http://localhost?auth=123455 under mono otherwise
-            // thats why expose Source back on UriInfo so that the purifiers can adjust private fields
-            // accordingly
+            // uri ToString() will print http://localhost?auth=123455 under mono 
+            // thats why we expose Source back on UriInfo 
+            // so that the purifiers can adjust private fields accordingly
 
             Source = source;
             if (start < source.Length - 1 && !(new [] { ':', '/' }.Contains(source[start])))

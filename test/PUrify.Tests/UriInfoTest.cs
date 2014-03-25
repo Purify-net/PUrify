@@ -104,7 +104,7 @@ namespace PUrify.Tests
             public ConstructorWithOnlyQueryString_HostHasPort()
             {
                 var path = "?authToken=ABCDEFGHIJK";
-                var url = "http://localhost:80";
+                var url = "http://localhost:8081";
                 var uri = new Uri(url);
                 _uriInfo = new UriInfo(new Uri(uri, path).Purify(), url + path);
                 _uri = new Uri(uri, path).Purify();
@@ -113,7 +113,7 @@ namespace PUrify.Tests
             [Fact]
             public void ShouldStartPathWithAForwardSlash()
             {
-                _uriInfo.Source.ShouldEqual("http://localhost:80/?authToken=ABCDEFGHIJK");
+                _uriInfo.Source.ShouldEqual("http://localhost:8081/?authToken=ABCDEFGHIJK");
             }
 
             [Fact]
