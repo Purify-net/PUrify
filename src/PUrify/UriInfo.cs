@@ -11,6 +11,8 @@ namespace Purify
         public string Path { get; private set; }
         public string Query { get; private set; }
 
+        public string Source { get; private set; }
+
         public UriInfo(Uri uri, string source)
         {
             var fragPos = source.IndexOf("#", StringComparison.Ordinal);
@@ -29,8 +31,25 @@ namespace Purify
 
             Path = queryPos > -1 ? source.Substring(start, pathEnd - start) : source.Substring(start);
 
-            Query = fragPos > -1 ? source.Substring(queryPos, fragPos - queryPos) : null;
+            Query = fragPos > -1 
+                ? source.Substring(queryPos, fragPos - queryPos)
+                : queryPos > -1
+                    ? source.Substring(queryPos, (source.Length - queryPos)) 
+                    : null;
+            
+            
+            // var u = new Uri("http://localhost/");
+            // var uri = new Uri(uri, "?auth=123455");
+            //
+            // uri ToString() will print http://localhost?auth=123455 under mono 
+            // thats why we expose Source back on UriInfo 
+            // so that the purifiers can adjust private fields accordingly
 
+            Source = source;
+            if (start < source.Length - 1 && source[start] != ':' && source[start] != '/')
+            {
+                Source = source.Insert(start, "/");
+            }
         }
     }
 }
