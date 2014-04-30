@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+#if !WINDOWS_PHONE
 using System.Reflection;
 using System.Text;
 using Purify;
@@ -9,7 +10,6 @@ namespace PUrify
 {
     class PurifierMono : IPurifier
     {
-#if !WINDOWS_PHONE
         private static Type uriType = typeof(Uri);
         private static FieldInfo mono_sourceField;
         private static FieldInfo mono_queryField;
@@ -40,6 +40,6 @@ namespace PUrify
             mono_cachedToStringField.SetValue(uri, uriInfo.Source);
             mono_cachedAbsoluteUriField.SetValue(uri, uriInfo.Source);
         }
-#endif
     }
 }
+#endif

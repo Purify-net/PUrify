@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !WINDOWS_PHONE
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -9,7 +10,6 @@ namespace PUrify
 {
     class PurifierDotNet : IPurifier
     {
-#if !WINDOWS_PHONE
         private static FieldInfo flagsField;
         private static FieldInfo infoField;
         private static FieldInfo stringField;
@@ -55,5 +55,6 @@ namespace PUrify
             moreInfoQuery.SetValue(moreInfo, uriInfo.Query);
         }
     }
-#endif
 }
+#endif
+
