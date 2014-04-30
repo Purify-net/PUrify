@@ -9,6 +9,7 @@ namespace PUrify
 {
     class PurifierDotNet : IPurifier
     {
+#if !WINDOWS_PHONE
         private static FieldInfo flagsField;
         private static FieldInfo infoField;
         private static FieldInfo stringField;
@@ -54,4 +55,5 @@ namespace PUrify
             moreInfoQuery.SetValue(moreInfo, uriInfo.Query);
         }
     }
+#endif
 }

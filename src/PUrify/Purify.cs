@@ -10,6 +10,7 @@ namespace PUrify
 
         private static readonly bool isMono;
 
+#if !WINDOWS_PHONE
         static Purifier()
         {
             isMono = typeof(Uri).GetField("m_Flags", BindingFlags.Instance | BindingFlags.NonPublic) == null;
@@ -48,10 +49,13 @@ namespace PUrify
                 .ToString()
                 .EndsWith("%2F", StringComparison.InvariantCulture);
 
+
         }
+#endif
 
         public static Uri Purify(this Uri uri)
         {
+#if !WINDOWS_PHONE
             if (!uri.IsAbsoluteUri)
                 return uri;
 
@@ -63,6 +67,7 @@ namespace PUrify
             else return uri;
             
             purifier.Purify(uri);
+#endif
             return uri;
         }
     }
