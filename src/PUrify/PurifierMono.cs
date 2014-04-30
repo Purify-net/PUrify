@@ -1,7 +1,7 @@
-﻿using System;
+﻿#if !WINDOWS_PHONE
+using System;
 using System.Collections.Generic;
 using System.Linq;
-#if !WINDOWS_PHONE
 using System.Reflection;
 using System.Text;
 using Purify;
