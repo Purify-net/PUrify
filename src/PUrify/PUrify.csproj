@@ -44,12 +44,8 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IPurify.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Purify.cs" />
-    <Compile Include="PurifierDotNet.cs" />
-    <Compile Include="PurifierMono.cs" />
-    <Compile Include="UriInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
