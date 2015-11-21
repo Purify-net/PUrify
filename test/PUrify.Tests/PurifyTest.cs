@@ -19,8 +19,7 @@ namespace PUrify.Tests
 
             public ThePurifyMethod()
             {
-                _uri = new Uri("http://www.myapi.com/%2F?Foo=Bar%2F#frag");
-                _uri.Purify();
+                _uri = new Uri("http://www.myapi.com/%2F?Foo=Bar%2F#frag").Purify();
             }
 
             [Fact]

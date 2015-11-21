@@ -64,22 +64,26 @@ namespace Purify
         /// Will purify the <param name="uri"></param> to the unscrubed version.
         /// <pre>Calling this will be a NOOP on .NET 4.5 and up.</pre>
         /// </summary>
-        /// <param name="uri"></param>
-        public static void Purify(this Uri uri)
+        /// <param name="uri">The uri to be purified</param>
+        /// <returns>The purified uri</returns>
+        public static Uri Purify(this Uri uri)
         {
             IPurifier purifier = null;
             if (isMono)
                 purifier = new PurifierMono();
             else if (hasBrokenDotNetUri)
                 purifier = new PurifierDotNet();
-            else return;
+            else return uri;
 
-            purifier.Purify(uri);
+            return purifier.Purify(uri);
         }
 
         private interface IPurifier
         {
-            void Purify(Uri uri);
+            /// <summary>
+            /// purifies and returns the passed <param name="uri"></param>
+            /// </summary>
+            Uri Purify(Uri uri);
         }
 
         private class PurifierDotNet : IPurifier
@@ -109,7 +113,7 @@ namespace Purify
             }
 
             //Code inspired by Rasmus Faber's solution in this post: http://stackoverflow.com/questions/781205/getting-a-url-with-an-url-encoded-slash
-            public void Purify(Uri uri)
+            public Uri Purify(Uri uri)
             {
                 string paq = uri.PathAndQuery; // need to access PathAndQuery
                 var abs = uri.AbsoluteUri; //need to access this as well the MoreInfo prop is initialized.
@@ -124,6 +128,7 @@ namespace Purify
                 var uriInfo = new UriInfo(uri, source);
                 moreInfoPath.SetValue(moreInfo, uriInfo.Path);
                 moreInfoQuery.SetValue(moreInfo, uriInfo.Query);
+                return uri;
             }
         }
 
@@ -146,7 +151,7 @@ namespace Purify
                     BindingFlags.NonPublic | BindingFlags.Instance);
             }
 
-            public void Purify(Uri uri)
+            public Uri Purify(Uri uri)
             {
                 var source = (string)mono_sourceField.GetValue(uri);
                 mono_cachedToStringField.SetValue(uri, source);
@@ -154,6 +159,7 @@ namespace Purify
                 var uriInfo = new UriInfo(uri, source);
                 mono_pathField.SetValue(uri, uriInfo.Path);
                 mono_queryField.SetValue(uri, uriInfo.Query);
+                return uri;
             }
         }
 
