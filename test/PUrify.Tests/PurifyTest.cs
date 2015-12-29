@@ -19,19 +19,19 @@ namespace PUrify.Tests
 
             public ThePurifyMethod()
             {
-                _uri = new Uri("http://www.myapi.com/%2F?Foo=Bar%2F#frag").Purify();
+                _uri = new Uri("http://www.myapi.com:1300/%2F?Foo=Bar%2F#frag").Purify();
             }
 
             [Fact]
             public void ToStringContainsEscapedSlashes()
             {
-                _uri.ToString().ShouldEqual("http://www.myapi.com/%2F?Foo=Bar%2F#frag");
+                _uri.ToString().ShouldEqual("http://www.myapi.com:1300/%2F?Foo=Bar%2F#frag");
             }
 
             [Fact]
             public void AbsoluteUriContainsEscapedSlashes()
             {
-                _uri.AbsoluteUri.ShouldEqual("http://www.myapi.com/%2F?Foo=Bar%2F#frag");
+                _uri.AbsoluteUri.ShouldEqual("http://www.myapi.com:1300/%2F?Foo=Bar%2F#frag");
             }
 
             [Fact]
@@ -56,6 +56,19 @@ namespace PUrify.Tests
             public void UriFragmentIsProperlySet()
             {
                 _uri.Fragment.ShouldEqual("#frag");
+            }
+
+            [Fact]
+            public void PortIsProperlySet()
+            {
+                this._uri.Port.ShouldEqual(1300);
+            }
+
+            [Fact]
+            public void UriWithoutQueryString_CanBeParsed()
+            {
+                var uri = new Uri("http://www.myapi.com/%2F").Purify();
+                uri.ToString().ShouldEqual("http://www.myapi.com/%2F");
             }
         }
 
