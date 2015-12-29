@@ -57,6 +57,13 @@ namespace PUrify.Tests
             {
                 _uri.Fragment.ShouldEqual("#frag");
             }
+
+            [Fact]
+            public void UriWithoutQueryString_CanBeParsed()
+            {
+                var uri = new Uri("http://www.myapi.com/%2F").Purify();
+                uri.ToString().ShouldEqual("http://www.myapi.com/%2F");
+            }
         }
 
     }
