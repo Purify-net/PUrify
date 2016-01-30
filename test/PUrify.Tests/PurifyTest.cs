@@ -12,7 +12,7 @@ namespace PUrify.Tests
 {
     public class PurifyTest
     {
-      
+
         public class ThePurifyMethod
         {
             private readonly Uri _uri;
@@ -69,6 +69,13 @@ namespace PUrify.Tests
             {
                 var uri = new Uri("http://www.myapi.com/%2F").Purify();
                 uri.ToString().ShouldEqual("http://www.myapi.com/%2F");
+            }
+
+            [Fact]
+            public void GetHashCodeShouldNotThrow()
+            {
+                var uri = new Uri("http://www.myapi.com").Purify();
+                Assert.DoesNotThrow(() => uri.GetHashCode());
             }
         }
 

@@ -1,0 +1,12 @@
+language: csharp
+mono:
+    - latest
+    - 3.12.0
+    - 3.10.0
+solution: PUrify.sln
+install:
+    - nuget restore PUrify.sln
+    - nuget install xunit.runners -Version 1.9.2 -OutputDirectory testrunner
+script:
+    - xbuild /p:Configuration=Release PUrify.sln
+    - mono ./testrunner/xunit.runners.1.9.2/tools/xunit.console.clr4.exe ./test/PUrify.Tests/bin/Release/PUrify.Tests.dll
