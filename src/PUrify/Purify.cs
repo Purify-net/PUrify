@@ -154,11 +154,11 @@ namespace Purify
             public Uri Purify(Uri uri)
             {
                 var source = (string)mono_sourceField.GetValue(uri);
-                mono_cachedToStringField.SetValue(uri, source);
-                mono_cachedAbsoluteUriField.SetValue(uri, source);
+                mono_cachedToStringField.SetValue(uri, source ?? string.Empty);
+                mono_cachedAbsoluteUriField.SetValue(uri, source ?? string.Empty);
                 var uriInfo = new UriInfo(uri, source);
-                mono_pathField.SetValue(uri, uriInfo.Path);
-                mono_queryField.SetValue(uri, uriInfo.Query);
+                mono_pathField.SetValue(uri, uriInfo.Path ?? string.Empty);
+                mono_queryField.SetValue(uri, uriInfo.Query ?? string.Empty);
                 return uri;
             }
         }
